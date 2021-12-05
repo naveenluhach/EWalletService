@@ -38,8 +38,8 @@ public class TransactionController {
         // and receiver id and corresponding users by using our another user service running
         //on diff spring boot application.
         //and update their wallets.
-        User sender = userService.findUserById(transaction.getSender_id());
-        User receiver = userService.findUserById(transaction.getReceiver_id());//+transaction id
+        User sender = userService.findUserById(transaction.getSender_id());//1
+        User receiver = userService.findUserById(transaction.getReceiver_id());//2
         //rollback logic
         if(sender ==null || receiver ==null){
             LOGGER.error("Transaction can't happen since one of sender/receiver does not exist for request : {}", transaction.toString());
@@ -62,6 +62,7 @@ public class TransactionController {
         LOGGER.info("transaction was successfull with sender {} and receiver {}", sender.toString(), receiver.toString());
         walletRepository.save(senderWallet);
         walletRepository.save(receiverWallet);
+        //email service
         return transactionRepository.save(transaction);
     }
 

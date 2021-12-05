@@ -19,7 +19,7 @@ public class UserService {
 
     //REST call to another endpoint // network call
     public User findUserById(int userid){
-        String url = "http://localhost:8080/users/findUser/{id}";
+        String url = "http://user-service/users/findUser/{id}";
         Map<String, Integer> params= new HashMap<String, Integer>();
         params.put("id", userid);
         try {
