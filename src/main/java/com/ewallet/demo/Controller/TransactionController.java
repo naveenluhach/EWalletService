@@ -31,6 +31,7 @@ public class TransactionController {
     private TransactionRepository transactionRepository;
 
     //sendMoney
+    //customer
     @PostMapping("/sendMoney")
     public Transaction sendMoney(@RequestBody Transaction transaction) throws Exception{
         //from the request transaction body, we will get sender id
@@ -71,6 +72,7 @@ public class TransactionController {
     //addBalance
     //request ---- user id, amount
     //wallet already have 100 rs, add 10
+    //customername
     @PutMapping("/addBalance")
     public Integer addBalance(@RequestBody AddBalanceDetails addBalanceDetails){
         LOGGER.info("Got this request for adding balance : {}", addBalanceDetails.toString());
@@ -82,6 +84,7 @@ public class TransactionController {
         return wallet.getBalance();
     }
 
+    //adminname
     @GetMapping("/getBalance/{userid}")
     public Integer getBalance(@PathVariable int userid) throws Exception{
         Wallet wallet = walletRepository.findByUserId(userid);
